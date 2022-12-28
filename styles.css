@@ -1,0 +1,206 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+/* CUSTOM COLORS */
+:root{
+    --text-softRed:hsl(14, 88%, 65%);
+    --text-darkBlue:hsl(238, 29%, 16%);
+    --bg-violet:hsl(273, 75%, 66%);
+    --bg-blue:hsl(240, 73%, 65%);
+    --text-veryDarkGrayBlue:hsl(237, 12%, 33%);
+    --text-darkGrayBlue:hsl(240, 6%, 50%);
+    --divider:hsl(240, 5%, 91%);
+}
+
+/* CSS RESET */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+/* LAYOUT */
+
+body {
+    font-size: 12px;
+    font-family: 'Kumbh Sans', sans-serif;
+    background: linear-gradient(0,var(--bg-blue),var(--bg-violet));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.box {
+  display: none;
+}
+
+main {
+  width: 340px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  height: 130px;
+  position: relative;
+  background: url(/images/bg-pattern-mobile.svg) no-repeat center top;
+}
+
+picture img {
+  width: 70%;
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
+
+.faq {
+  padding: 0 20px 30px;
+}
+
+.faq h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content-container {
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px solid var(--divider);
+  padding: 5px 0;
+}
+
+.content-container .question:hover {
+  color: var(--text-softRed);
+}
+
+.content-container .question:after{
+  content: url("/images/icon-arrow-down.svg");
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+}
+
+.content-container .answer {
+  height: 0px;
+  overflow: hidden;
+  transition: .5s;
+  color: var(--text-veryDarkGrayBlue);
+  margin-top: 5px;
+}
+
+.content-container.active .answer{
+  height: 40px;
+}
+
+.content-container.active .question:after{
+  transition: .5s;
+  transform: rotate(180deg);
+}
+
+.content-container.active .question{
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 800px) {
+  main {
+    width: 70%;
+    max-width: 900px;
+    flex-direction: row;
+    height: 500px;
+  }
+
+  .image {
+    background: url(/images/bg-pattern-desktop.svg) no-repeat;
+    width: 55%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .box {
+    display: block;
+    position: absolute;
+    left: -80px;
+    bottom: 20%;
+    z-index: 1;
+    width: 50%;
+  }
+
+  picture img {
+    width: 100%;
+    left: -70px;
+    bottom:22%;
+  }
+
+  .faq {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .faq h2 {
+    font-size: 3rem;
+  }
+
+  .content-container {
+    font-size: 1rem;
+  } 
+
+  .content-container.active .answer{
+    height: 75px;
+  }
+
+}
